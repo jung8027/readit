@@ -9,13 +9,15 @@ app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json())
 app.use(express.static('public'))
 
+//ROUTES//
+app.use('/api', apiRouter)
 
-app.use(apiRouter)
-
+//INDEX VIEW//
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '/views/index.html'))
 })
 
+//DB SYNC//
 db.sequelize.sync().then(function() {
-  app.listen(3000)
+  app.listen(3000, ()=>console.log('Listening to port 3000'))
 })

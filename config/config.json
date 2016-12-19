@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "Kuang",
+    "username": "Jung",
     "password": null,
-    "database": "surveyapp",
+    "database": "readit",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
