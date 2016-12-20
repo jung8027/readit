@@ -2,7 +2,7 @@ import React from 'react';
 import $ from 'jquery'
 import Post from './Post'
 
-const FrontPage = React.createClass({
+export const FrontPage = React.createClass({
 	getInitialState(){
 		return{
 			Posts: null
@@ -13,7 +13,7 @@ const FrontPage = React.createClass({
 			url: '/api/post',
 			type: 'GET'
 		})
-		.then(posts => this.setState({Posts: posts}))
+		.done(posts => this.setState({Posts: posts}))
 	},
 	render(){
 		console.log(this.state.Posts)
@@ -27,4 +27,3 @@ const FrontPage = React.createClass({
 	}
 })
 
-export default FrontPage

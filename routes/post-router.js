@@ -28,7 +28,7 @@ const getOnePost = (req,res) => (
 	res.send(postInfo)
 )
 
-const postPost = (req,res) => {
+const createPost = (req,res) => {
 	let body = req.body;
 	Post.create({
 		title: body.title,
@@ -49,7 +49,7 @@ const deletePost = (req,res)=> (
 //ROUTES//
 router.route('/')
 	.get(getAllPosts)
-	.post(postPost)
+	.post(createPost)  //
 
 router.route('/:PostId')
 	.get(getOnePost)
