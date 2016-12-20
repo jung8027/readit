@@ -18,7 +18,7 @@ const getAllPosts = (req,res) => (
 
 const getOnePost = (req,res) => (
 	Post.findOne({
-		where: {id: req.params.id},
+		where: {id: req.params.PostId},
 		include: [
 		  {model: Comment}, {model: Vote}
 		]
@@ -30,7 +30,6 @@ const getOnePost = (req,res) => (
 
 const postPost = (req,res) => {
 	let body = req.body;
-	console.log('testing post');
 	Post.create({
 		title: body.title,
 		body: body.body
@@ -41,16 +40,18 @@ const postPost = (req,res) => {
 }
 
 const deletePost = (req,res)=> (
-	console.log('destroy test')
-	// Post.destroy()
-) 
+	Post.destroy({
+		where: {id: req.params.PostId}
+	})
+)
+.then(()=>res.send('Post with id: '+req.params.PostId+' deleted!'))
 
 //ROUTES//
 router.route('/')
 	.get(getAllPosts)
 	.post(postPost)
 
-router.route('/:id')
+router.route('/:PostId')
 	.get(getOnePost)
 	.delete(deletePost)
 

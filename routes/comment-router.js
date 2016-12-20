@@ -9,16 +9,28 @@ const getAllComments = (req,res) => (
 )
 .then(commentInfo => res.send(commentInfo))
 
-function postComment (req,res) => {
+const deleteComment = (req,res) => (
+	Comment.destroy({
+		where: {id: req.params.CommentId}
+	})
+)
+.then(()=>res.send('Comment with id: '+req.params.PostId+' deleted!'))
+
+const postComment = (req,res) => {
 	let body = req.body;
-	Comment.
+	Comment.create({
+		PostId: body.PostId,
+		comment: body.comment
+	})
+	.then(commentInfo => res.send(commentInfo))
 }
 
 //ROUTES//
 router.route('/')
 	.get(getAllComments)
+	.post(postComment) // needs PostId and comment
 
-router.route('/:id')
-	.post(postComment)
+router.route('/:CommentId')
+	.delete(deleteComment)
 
 module.exports = router;
