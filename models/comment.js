@@ -7,6 +7,7 @@ module.exports = function(sequelize, DataTypes){
     classMethods: {
       associate: function(models) {
       	//the model association name refers to the title of the table not the variable name
+        Comment.belongsTo(models.User)
         Comment.belongsTo(models.Post, {
           onDelete: "CASCADE",
           foreignKey: {
