@@ -20,7 +20,8 @@ const postComment = (req,res) => {
 	let body = req.body;
 	Comment.create({
 		PostId: body.PostId,
-		comment: body.comment
+		comment: body.comment,
+		UserId: body.UserId
 	})
 	.then(commentInfo => res.send(commentInfo))
 }

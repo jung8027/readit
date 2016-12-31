@@ -2,13 +2,17 @@ const router = require("express").Router();
 const Post = require('../models').Post;
 const Comment = require('../models').Comment;
 const Vote = require('../models').Vote;
+const User = require('../models').User;
 
 
 //FUNCTIONS//
 const getAllPosts = (req,res) => (
 	Post.findAll({
 		include: [
-		  {model: Comment}, {model: Vote}
+		  {model: Comment,
+		  	include: [{model: User}]
+		  },
+		  {model: Vote}
 		]
 	})
 )
@@ -20,7 +24,10 @@ const getOnePost = (req,res) => (
 	Post.findOne({
 		where: {id: req.params.PostId},
 		include: [
-		  {model: Comment}, {model: Vote}
+		  {model: Comment,
+		  	include: [{model: User}]
+		  }, 
+		  {model: Vote}
 		]
 	})
 )
@@ -32,7 +39,8 @@ const createPost = (req,res) => {
 	let body = req.body;
 	Post.create({
 		title: body.title,
-		body: body.body
+		body: body.body,
+		UserId: body.UserId
 	})
 	.then(()=>
 		res.send('Post name '+body.title+' created!')

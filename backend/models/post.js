@@ -2,7 +2,7 @@
 
 module.exports = function(sequelize, DataTypes){
 	var Post = sequelize.define('Post', {
-		title: DataTypes.STRING,
+		title: {type: DataTypes.STRING, validate: {notEmpty: true}},
     body: DataTypes.STRING
 	}, {
     classMethods: {

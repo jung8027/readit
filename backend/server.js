@@ -14,7 +14,7 @@ app.use('/api', apiRouter)
 
 //INDEX VIEW//
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, '/views/index.html'))
+  res.sendFile(path.join(__dirname, '../views/index.html'))
 })
 
 //DB SYNC//

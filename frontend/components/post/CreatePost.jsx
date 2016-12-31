@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import {Link} from 'react-router'
 
 export const CreatePost = React.createClass({
 	getInitialState(){
@@ -23,7 +24,7 @@ export const CreatePost = React.createClass({
 			<div>
 				<input type='text' placeholder='TITLE' onChange={this.handleChange.bind(this, 'title')}/>
 				<input type='text' placeholder='BODY' onChange={this.handleChange.bind(this, 'body')}/>
-				<input type='submit' onClick={this.handleClick}/>
+				<Link to='/'><input type='submit' onClick={this.handleClick}/></Link>
 			</div>
 		)
 	}
