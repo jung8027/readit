@@ -1,23 +1,24 @@
 import React from 'react';
 import {Link} from 'react-router'
-import {UserLogin} from './components/user/UserLogin'
+import $ from 'jquery'
 
 export const Navbar = React.createClass({
-  render() {
-    return (
-      <ul className='navbar'>
-        <li><Link to="/">WELCOME TO READIT</Link></li>
-        <li>hot</li>
-        <li>new</li>
-        <li>rising</li>
-        <li>controversial</li>
-        <li>top</li>
-        <li>gilded</li>
-        <li>wiki</li>
-        <li>promoted</li>
-        <li>sign up</li>
-        <UserLogin />
-      </ul>
-    )
-  }
+  logout(){
+    $.ajax({
+      url: '/api/login',
+      type: 'DELETE'
+    })
+  },
+  render(){
+    return(
+      <div id='navbar'>
+        <p className='titlelink'><Link to="/">WELCOME TO READIT</Link></p>
+        {this.props.userStatus ? 
+          <div className='login'>
+            <p>{'Welcome ' + this.props.userStatus.username}</p>
+            <button onClick={this.logout}><Link to='/'>Log out</Link></button> 
+          </div>
+          : <p className='login'><Link to='/login'>Log in or sign up</Link></p> }
+      </div>
+  )}
 })

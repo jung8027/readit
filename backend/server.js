@@ -4,10 +4,18 @@ var bodyparser = require('body-parser')
 var path = require('path')
 var apiRouter = require('./routes/api.js')
 var db = require('./models')
+var session = require('express-session')
 
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json())
 app.use(express.static('public'))
+
+//establish express session//
+app.use(session({
+  secret: 'supersecretstuff',
+  resave: true,
+  saveUninitialized: true
+}))
 
 //ROUTES//
 app.use('/api', apiRouter)

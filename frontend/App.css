@@ -1,0 +1,18 @@
+#navbar{
+	background-color: rgb(105,105,105);
+	display: inline-flex;
+	display: flex;
+}
+
+#navbar .titlelink{
+	justify-content: flex-start;
+}
+
+#navbar .login{
+	display: inline-flex;
+	margin-left: auto;
+}
+
+/** {
+	background-color: rgb(38,38,38);
+}*/

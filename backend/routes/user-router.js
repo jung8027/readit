@@ -5,8 +5,6 @@ const Vote = require('../models').Vote;
 const User = require('../models').User;
 
 
-
-
 //FUNCTIONS//
 const getAllUsers = (req,res) => (
 	User.findAll({
